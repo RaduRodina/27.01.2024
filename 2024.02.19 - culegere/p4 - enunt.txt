@@ -1,0 +1,3 @@
+Implementati un program C care primeste de la linia de comanda o cale de fisier si doua momente de timp in formatul hh:mm:ss.
+Programul citeste datele (doar un moment de timp pe linie) dintr-un fisier intr-un tablou alocat dinamic si 
+afiseaza toate valorile dintre cele doua momente de timp in ordine descrescatoare.

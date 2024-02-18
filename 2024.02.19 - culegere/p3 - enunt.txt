@@ -1,4 +1,6 @@
+Implementati o functie C care primeste un string si returneaza un string unde fiecare contor de dupa un caracter este inlocuit cu repetarea caracterului.
 
+De exemplu pentru string-ul ab2c3de2 vom obtinne abbcccdee.
 
 
 

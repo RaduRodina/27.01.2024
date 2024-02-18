@@ -1,0 +1,4 @@
+Implementati o functie C care primeste o valoare uint32_t si afiseaza toate valorile ce pot fi obtinute prin aplicarea succesiva a rotatiei la stanga.
+
+Rotatia la stanga inseamna inlocuirea celui mai putin semnificativ nibble cu cel mai semnificativ nibble si deplasarea tuturor bitilor la stanga.
+

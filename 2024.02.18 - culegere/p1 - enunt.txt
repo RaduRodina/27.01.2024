@@ -1,15 +1,7 @@
+Sa se scrie un program care citeste date, la nivel de caracter, de la intrarea standard.
+Pentru fiecare linie sa se afiseze valoarea maxima si media valorilor de pe acea linie.
+Fiecare linie contine una sau mai multe valori in octal separate de cel putin un spatiu.
 
-
-
-
-
-
-
-
-
-
-
-
-
+Sa se faca o varianta cu instructiuni repetitive si una fara instructiuni repetitive.
 
 
