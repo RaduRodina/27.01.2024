@@ -13,6 +13,7 @@ void update_string(char *s)
     while(s[i] != 0)
     {
         count = 1;
+        // aici for-ul nu poate pleca de la 0 ci de la pozitia i, ar fi bine sa aibe alta variabila j
         for(int i = 0; i < strlen(s); i++)
         {
             if(s[i] == c)
@@ -32,8 +33,13 @@ void update_string(char *s)
                 }
                 c = s[i];
                 count = 1;
+                // daca nu mai este concidenta probabil ar fi trebuit sa iesim cu break
             }
         }
+        // cand e gata for-ul atunci ai putea sa concatenezi rezultatele in sirul de iesire
+
+        // apoi reset, se ia urmatorul caracter si se pleaca cu numararea de la pozitia sa i=j
+
         j = 0;
         w[j] = 0;
     }

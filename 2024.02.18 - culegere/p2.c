@@ -14,7 +14,6 @@ void rot_left(uint32_t n)
     }
 }
 
-
 int main()
 {
     uint32_t x = 0x12345678;

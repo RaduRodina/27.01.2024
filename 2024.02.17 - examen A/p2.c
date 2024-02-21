@@ -6,7 +6,7 @@ void right_shift(uint32_t n)
 {
     uint32_t a;
 
-    printf("initial n = %x\n", n);
+    printf("initial n = %X\n", n);
 
     for(int i = 0; i < 8*sizeof(n)/4; i++)
     {
@@ -15,7 +15,7 @@ void right_shift(uint32_t n)
         n = n >> 4;
         //printf("%x\n", n);
         n = n | (a<<(8*sizeof(n)-4));
-        printf("n = %x\n", n);
+        printf("n = %X\n", n);
     }
 }
 
