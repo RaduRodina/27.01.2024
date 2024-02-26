@@ -1,15 +1,4 @@
+Implementati o functie C care primeste un string si returneaza un string unde fiecare contor de dupa o pereche de caractere este inlocuita cu repetarea perechii.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+De exemplu pentru string-ul ab2cc3de2 vom obtinne ababccccccdede.
 

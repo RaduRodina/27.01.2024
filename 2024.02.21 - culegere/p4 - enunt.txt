@@ -1,0 +1,13 @@
+Implementati un program C care primeste de la linia de comanda o cale de fisier ce contine pe fiecare linie un moment de timp urmat de o activitate in formatul dd.mm.yyyy hh:mm:ss activitate.
+
+Programul citeste momentele si activitatile (doar un moment de timp si o activitate pe linie) dintr-un fisier intr-un tablou alocat dinamic si afiseaza toate activitatile in ordine crescatoare a timpului.
+
+O activitate poate fi descrisa prin unul sau mai multe cuvinte formate din litere mari sau mici separate de unul sau mai multe spatii.
+
+De exemplu fisierul poate arata asa:
+
+26.01.2024 20:00:00 submitere articol conferinta
+26.01.2024 18:00:00 pregatire doctorat Adina Muntean
+26.01.2024 09:30:00 editare probleme de programare
+26.01.2024 12:00:00 prezentare elevi Petrosani
+
