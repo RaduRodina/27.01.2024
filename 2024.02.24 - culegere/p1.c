@@ -19,7 +19,7 @@ int convert(char w[])
     return nr;
 }
 
-int sum_buf(int buff[], k)
+int sum_buf(int buff[], int k)
 {
     int s = 0;
     for(int i = 0; i < k; i++)
@@ -160,7 +160,7 @@ void reading()
         }
         else if(st == 6)
         {
-            printf("Am incheiat de parcurs o paranteza\n");
+            printf("Am incheiat de parcurs o paranteza rotunda\n");
             buff[k] = s;
             k++;
             st = 0;
@@ -214,7 +214,7 @@ void reading()
         }
         else if(st == 10)
         {
-            printf("Am incheiat de parcurs o paranteza\n");
+            printf("Am incheiat de parcurs o paranteza dreapta\n");
             buff[k] = p;
             k++;
             st = 0;
