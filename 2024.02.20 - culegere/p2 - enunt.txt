@@ -22,5 +22,5 @@ In pasul al doilea consideram:
 
 Rezulta:
 
-0101 1010 1100 0011
+0101 1010 0011 0011
 
