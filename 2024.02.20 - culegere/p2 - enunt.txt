@@ -1,0 +1,26 @@
+Implementati o functie C care primeste o valoare uint32_t si afiseaza toate valorile ce pot fi obtinute prin interschimbarea in oglinda a cate unui nibble incepand de la "capetele" numarului.
+
+De exemplu daca avem 4 nibble-uri:
+
+1100 1100 0101 1010
+  
+La primul pas se va interschimba primul nibble cu ultimul si se vor oglindi:
+
+1100 in oglinda este 0011
+
+1010 in oglinda este 0101
+
+Astfel vom avea 
+
+0101 1100 0101 0011
+
+In pasul al doilea consideram:
+
+1100 in oglinda devine 0011
+
+0101 in oglinda devine 1010
+
+Rezulta:
+
+0101 1010 1100 0011
+
