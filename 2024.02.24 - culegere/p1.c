@@ -30,6 +30,7 @@ int sum_buf(int buff[], int k)
 }
 
 
+
 void reading()
 {
     char c;
@@ -76,10 +77,10 @@ void reading()
                 st = 7;
                 c = fgetc(f);
             }
-            /*else if(c == '/n')
+            else if(c == 10)
             {
-                buff
-            }*/
+                st = 11;
+            }
             else
             {
                 st = 0;
@@ -119,6 +120,10 @@ void reading()
                 j++;
                 st = 4;
                 c = fgetc(f);
+            }
+            else if(c == ')')
+            {
+                st = 6;
             }
             else
             {
@@ -160,7 +165,7 @@ void reading()
         }
         else if(st == 6)
         {
-            printf("Am incheiat de parcurs o paranteza rotunda\n");
+            printf("Am incheiat de parcurs o paranteza\n");
             buff[k] = s;
             k++;
             st = 0;
@@ -174,6 +179,10 @@ void reading()
                 j++;
                 st = 8;
                 c = fgetc(f);
+            }
+            else if(c == ']')
+            {
+                st = 10;
             }
             else
             {
@@ -214,10 +223,31 @@ void reading()
         }
         else if(st == 10)
         {
-            printf("Am incheiat de parcurs o paranteza dreapta\n");
+            printf("Am incheiat de parcurs o paranteza\n");
             buff[k] = p;
             k++;
             st = 0;
+            c = fgetc(f);
+        }
+        else if(st == 11)
+        {
+            printf("buff = ");
+            for(int v = 0; v < k; v++)
+            {
+                printf(" %d ", buff[v]);
+            }
+            printf("\n");
+
+            int sb = sum_buf(buff, k);
+            printf("Suma de pe aceasta linie este: %d\n", sb);
+
+            for (int v = 0; v < k; v++)
+            {
+                buff[v] = 0;
+            }
+            st = 0;
+            s = 0;
+            p = 1;
             c = fgetc(f);
         }
     }
