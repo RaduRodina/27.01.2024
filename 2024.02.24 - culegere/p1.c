@@ -56,7 +56,8 @@ void reading()
     c = fgetc(f);
     while(!feof(f))
     {
-        printf("st=%d, c=%c\n", st, c);
+        w[j]=0;
+        printf("st=%d, c=%c w=%s\n", st, c, w);
         if(st == 0)
         {
             if(isdigit(c))
@@ -147,7 +148,7 @@ void reading()
             int y = convert(w);
             printf("Am gasit un termen dintr-o suma: %d\n", y);
             s = s + y;
-            printf("s = %d\n", s);
+            printf("Suma: %d\n", s);
             if(c == ')')
             {
                 st = 6;
