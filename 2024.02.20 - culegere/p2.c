@@ -1,3 +1,4 @@
+// NU MERGE INTERSCHIMBAREA
 #include <stdio.h>
 #include <stdint.h>
 #include <ctype.h>
