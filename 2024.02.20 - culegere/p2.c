@@ -27,7 +27,7 @@ void interschimbare(uint16_t x)
         printf("n = %x\n", n);
         n = n & ~(0xF << (8*sizeof(x) - 4 - (4*i)));
         printf("n = %x\n", n);
-        n = n | (p >> (8*sizeof(x) - 4 - (4*i)));
+        n = n | (p >> (8*sizeof(x) - 4 - (4*i))); // AICI E PROBLEMA DAR NU INTELEG DE CE 
         printf("n = %x\n", n);
         n = n | (m << (8*sizeof(x) - 4 - (4*i)));
         printf("n = %x\n", n);
