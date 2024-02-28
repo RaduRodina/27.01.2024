@@ -1,4 +1,3 @@
-//BUFFERUL SE BLOCHEAZA
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -27,34 +26,35 @@ unsigned long convert(char w[])
     return zecimal;
 }
 
-unsigned long max_buf(unsigned long buff[])
+unsigned long max_buf(unsigned long buff[], int k)
 {
+    //printf("CALCULAREA MAXIMULUI\n");
     unsigned long max = buff[0];
-    int i = 1;
-    while(buff[i]!= 0)
+    for (int i = 0; i < k; i++)
     {
         if(max < buff[i])
         {
             max = buff[i];
         }
-        i++;
     }
     return max;
 }
 
 double avg_buf(unsigned long buff[], int k)
 {
+    printf("CALCULAREA MEDIEI\n");
     unsigned long s = 0;
     for(int i = 0; i < k; i++)
     {
         s = s + buff[i];
     }
+    printf("s = %ul\n", s);
     return (double)s/k;
 }
 
 void hexa_in_string(char s[])
 {
-    printf("%s\n", s);
+    printf("s = %s\n", s);
     int i = 0;
     int st = 0;
     char w[100];
@@ -141,16 +141,16 @@ void hexa_in_string(char s[])
             printf("Am gasit linie noua\n");
             for(int i = 0; i < k; i++)
             {
-                printf("buff = %lu", buff[k]);
+                printf("buff = %lu\n", buff[i]);
             }
             printf("\n");
-            unsigned long m = max_buf(buff);
+            unsigned long m = max_buf(buff, k);
             printf("Maximul este: %lu\n", m);
             double avg = avg_buf(buff, k);
-            printf("Media este: %lu\n", avg);
+            printf("Media este: %f\n", avg);
             for(int i = 0; i < k; i++)
             {
-                buff[k] = 0;
+                buff[i] = 0;
             }
             k = 0;
             st = 0;
