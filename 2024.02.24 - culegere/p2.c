@@ -4,14 +4,45 @@
 #include <ctype.h>
 #include <math.h>
 
-
 float convert(char w[])
 {
-    float nr = 0;
-    float fr = 0.1;
+    printf("DEBUG CONVERT\n");
+    int nr = 0;
+    int st = 0;
     for(int i = 0; i < strlen(w); i++)
     {
-        if(w[i] == '.')
+        printf("st=%d, c=%c\n", st, w[i]);
+        if(st == 0)
+        {
+            if(isdigit(w[i]))
+            {
+                nr = nr*10 + (w[i] - '0');
+                st = 1;
+            }
+
+            else
+            {
+                printf("ERROR\n");
+                break;
+            }
+        }
+        else if(st == 1)
+        {
+            if(isdigit(w[i]))
+            {
+                nr = nr*10 + (w[i] - '0')
+            }
+            else if(w[i] == '.')
+            {
+                st = 2;
+            }
+            else
+            {
+                st = 0;
+            }
+        }
+
+        /*if(w[i] == '.')
         {
             i++;
             nr = nr + (w[i] - '0')*fr;
@@ -20,7 +51,7 @@ float convert(char w[])
         else
         {
             nr = nr*10 + (w[i] - '0');
-        }
+        }*/
     }
     return nr;
 }
@@ -109,6 +140,7 @@ void parcurgere()
         {
             w[j] = 0;
             j = 0;
+            printf("w = '%s\n", w);
             float x = convert(w);
             printf("Am gasit un numar intreg: %f\n", x);
             st = 0;
@@ -137,6 +169,8 @@ void parcurgere()
             printf("Am gasit un numar zecimal: %f\n", y);
             int q = round(y);
             printf("Numarul rotunjit: %d\n", q);
+            st = 0;
+            c = fgetc(f);
         }
     }
 
@@ -150,3 +184,4 @@ int main()
     parcurgere();
     return 0;
 }
+
