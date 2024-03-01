@@ -1,4 +1,4 @@
-//MAI AM DE LUCRAT
+//FINALIZAT
 
 #include <stdio.h>
 #include <string.h>
@@ -111,11 +111,11 @@ void parcurgere()
                 st = 6;
                 c = fgetc(f);
             }
-            /*else if(c == '[')
+            else if(c == '[')
             {
-                st = 9;
+                st = 13;
                 c = fgetc(f);
-            }*/
+            }
             else
             {
                 st = 0;
@@ -284,9 +284,9 @@ void parcurgere()
             w[j] = 0;
             j = 0;
             printf("Am gasit un nr zecimal: %s\n", w);
-            int y = (int)ceil(convert(w));
+            int y = (int)floor(convert(w));
             printf("Numarul rotunjit: %d\n", y);
-            c = fgetc(f);
+            //c = fgetc(f);
             if(c == ')')
             {
                 st = 12;
@@ -303,6 +303,112 @@ void parcurgere()
             printf("Am incheiat de parcurs o paranteza\n");
             st = 0;
             c = fgetc(f);
+        }
+        else if(st == 13)
+        {
+            if(isdigit(c))
+            {
+                w[j] = c;
+                j++;
+                st = 14;
+                c = fgetc(f);
+            }
+            else
+            {
+                st = 13;
+                c = fgetc(f);
+            }
+        }
+        else if(st == 14)
+        {
+            if(isdigit(c))
+            {
+                w[j] = c;
+                j++;
+                st = 14;
+                c = fgetc(f);
+            }
+            else if(c == '.')
+            {
+                w[j] = c;
+                j++;
+                st = 15;
+                c = fgetc(f);
+            }
+            else
+            {
+                st = 19;
+            }
+        }
+        else if(st == 15)
+        {
+            if(isdigit(c))
+            {
+                w[j] = c;
+                j++;
+                st = 16;
+                c = fgetc(f);
+            }
+            else
+            {
+                printf("ERROR (invalid input)");
+            }
+        }
+        else if(st == 16)
+        {
+            if(isdigit(c))
+            {
+                w[j] = c;
+                j++;
+                st = 16;
+                c = fgetc(f);
+            }
+            else
+            {
+                st = 17;
+            }
+        }
+        else if(st == 17)
+        {
+            w[j] = 0;
+            j = 0;
+            printf("Am gasit un nr zecimal: %s\n", w);
+            int y = (int)ceil(convert(w));
+            printf("Numarul rotunjit: %d\n", y);
+            //c = fgetc(f);
+            if(c == ']')
+            {
+                st = 18;
+            }
+            else
+            {
+                st = 13;
+            }
+        }
+        else if(st == 18)
+        {
+            w[j] = 0;
+            j = 0;
+            printf("Am incheiat de parcurs o paranteza\n");
+            st = 0;
+            c = fgetc(f);
+        }
+        else if(st == 19)
+        {
+            w[j] = 0;
+            j = 0;
+            printf("Am gasit un nr. intreg");
+            int x = (int)ceil(convert(w));
+            printf("Numarul rotunjit: %d", x);
+            c = fgetc(f);
+            if(c == ']')
+            {
+                st = 18;
+            }
+            else
+            {
+                st = 13;
+            }
         }
     }
     fclose(f);
