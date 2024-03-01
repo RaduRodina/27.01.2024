@@ -14,7 +14,7 @@ int my_round(char w[])
 
     while(w[i] != '\0')
     {
-        printf("st=%d, c=%c, nr=%d\n", st, w[i], nr);
+        printf("st=%d, c=%c, nr=%d, i=%d\n", st, w[i], nr);
 
         if(st == 0)
         {
@@ -22,7 +22,6 @@ int my_round(char w[])
             {
                 nr = nr*10 + (w[i] - '0');
                 st = 1;
-                i++;
             }
             else
             {
@@ -35,17 +34,10 @@ int my_round(char w[])
             if(isdigit(w[i]))
             {
                 nr = nr*10 + (w[i] - '0');
-                i++;
             }
             else if(w[i] == '.')
             {
                 st = 2;
-                i++;
-
-            }
-            else
-            {
-                st = 0;
             }
         }
         else if(st == 2)
@@ -56,10 +48,7 @@ int my_round(char w[])
                 if(after_point >= 5)
                 {
                     nr = nr + 1;
-                }
-                else
-                {
-                    nr = nr;
+                    i++;
                 }
             }
         }
@@ -98,12 +87,12 @@ void parcurgere()
                 st = 1;
                 c = fgetc(f);
             }
-            /*else if(c == '(')
+            else if(c == '(')
             {
-                st = 4;
+                st = 6;
                 c = fgetc(f);
             }
-            else if(c == '[')
+            /*else if(c == '[')
             {
                 st = 9;
                 c = fgetc(f);
@@ -132,7 +121,8 @@ void parcurgere()
             }
             else
             {
-                st = 3;
+                printf("ERROR(invalid input)\n");
+                st = 0;
             }
         }
         else if(st == 2)
@@ -183,9 +173,119 @@ void parcurgere()
             st = 0;
             c = fgetc(f);
         }
+        else if(st == 6)
+        {
+            if(isdigit(c))
+            {
+                w[j] = c;
+                j++;
+                st = 7;
+                c = fgetc(f);
+            }
+            else if(c == ')')
+            {
+                st = 12;
+            }
+            else
+            {
+                st = 6;
+                c = fgetc(f);
+            }
+        }
+        else if(st == 7)
+        {
+            if(isdigit(c))
+            {
+                w[j] = c;
+                j++;
+                st = 7;
+                c = fgetc(f);
+            }
+            else if(c == '.')
+            {
+                w[j] = c;
+                j++;
+                st = 8;
+                c = fgetc(f);
+            }
+            else
+            {
+                st = 10;
+            }
+        }
+        else if(st == 8)
+        {
+            if(isdigit(c))
+            {
+                w[j] = c;
+                j++;
+                st = 9;
+                c = fgetc(f);
+            }
+            else
+            {
+                printf("ERROR (invalid input)\n");
+                st = 6;
+            }
+        }
+        else if(st == 9)
+        {
+            if(isdigit(c))
+            {
+                w[j] = c;
+                j++;
+                st = 9;
+                c = fgetc(f);
+            }
+            else
+            {
+                st = 11;
+            }
+        }
+        else if(st == 10)
+        {
+            w[j] = 0;
+            j = 0;
+            printf("Am gasit un nr intreg: %s\n", w);
+            int x = my_round(w);
+            printf("Numarul rotunjit: %d", x);
+            st = 6;
+            c = fgetc(f);
+            if(c == ')')
+            {
+                st = 12;
+            }
+            else
+            {
+                st = 6;
+            }
+        }
+        else if(st == 11)
+        {
+            w[j] = 0;
+            j = 0;
+            printf("Am gasit un nr zecimal: %s\n", w);
+            int y = (int)ceil(my_round(w));
+            printf("Numarul rotunjit: %d\n", y);
+            c = fgetc(f);
+            if(c == ')')
+            {
+                st = 12;
+            }
+            else
+            {
+                st = 6;
+            }
+        }
+        else if(st == 12)
+        {
+            w[j] = 0;
+            j = 0;
+            printf("Am incheiat de parcurs o paranteza\n");
+            st = 0;
+            c = fgetc(f);
+        }
     }
-
-
     fclose(f);
 }
 
@@ -195,4 +295,3 @@ int main()
     parcurgere();
     return 0;
 }
-
