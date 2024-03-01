@@ -4,11 +4,6 @@
 #include <ctype.h>
 #include <math.h>
 
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
-#include <math.h>
-
 float convert(char w[])
 {
     printf("--DEBUG CONVERT--\n");
