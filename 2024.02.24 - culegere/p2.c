@@ -4,24 +4,29 @@
 #include <ctype.h>
 #include <math.h>
 
-int my_round(char w[])
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <math.h>
+
+float convert(char w[])
 {
-    printf("--DEBUG MY_ROUND--\n");
+    printf("--DEBUG CONVERT--\n");
     int i = 0;
-    int nr = 0;
     int st = 0;
-    int after_point = 0;
+    float nr = 0;
+    float o = 1; // float o SE RESETEAZA LA 0 MEREU, NU INTELEG DE CE :( 
 
-    while(w[i] != '\0')
+    while(w[i]!= 0)
     {
-        printf("st=%d, c=%c, nr=%d, i=%d\n", st, w[i], nr);
-
+        printf("st=%d, c=%c, nr=%f, i=%d, o=%f\n", st, w[i], nr, i);
         if(st == 0)
         {
             if(isdigit(w[i]))
             {
                 nr = nr*10 + (w[i] - '0');
                 st = 1;
+                i++;
             }
             else
             {
@@ -34,9 +39,12 @@ int my_round(char w[])
             if(isdigit(w[i]))
             {
                 nr = nr*10 + (w[i] - '0');
+                i++;
+                st = 1;
             }
             else if(w[i] == '.')
             {
+                i++;
                 st = 2;
             }
         }
@@ -44,20 +52,35 @@ int my_round(char w[])
         {
             if(isdigit(w[i]))
             {
-                after_point = after_point*10 + (w[i] - '0');
-                if(after_point >= 5)
-                {
-                    nr = nr + 1;
-                    i++;
-                }
+                nr = nr*10 + (w[i]- '0')/(float)o;
+                o = o*10;
+                i++;
+                st = 3;
+            }
+            else
+            {
+                printf("ERROR\n");
+                break;
             }
         }
-        i++;
+        else if(st == 3)
+        {
+            if(isdigit(w[i]))
+            {
+               nr = nr*10 + (w[i] - '0')/(float)o;
+               o = o*10;
+               i++;
+               st = 3;
+            }
+            else
+            {
+                st = 0;
+            }
+        }
     }
     printf("--FIN--\n");
     return nr;
 }
-
 
 void parcurgere()
 {
@@ -144,7 +167,7 @@ void parcurgere()
             w[j] = 0;
             j = 0;
             printf("w = '%s\n", w);
-            int x = my_round(w);
+            int x = (int)round(convert(w));
             printf("Am gasit un numar intreg: %d\n", x);
             st = 0;
             c = fgetc(f);
@@ -168,7 +191,7 @@ void parcurgere()
             w[j] = 0;
             j = 0;
             printf("Am gasit un nr zecimal: %s\n", w);
-            int y = my_round(w);
+            int y = (int)round(convert(w));
             printf("Numarul rotunjit: %d\n", y);
             st = 0;
             c = fgetc(f);
@@ -247,7 +270,7 @@ void parcurgere()
             w[j] = 0;
             j = 0;
             printf("Am gasit un nr intreg: %s\n", w);
-            int x = my_round(w);
+            int x = (int)round(convert(w));
             printf("Numarul rotunjit: %d", x);
             st = 6;
             c = fgetc(f);
@@ -265,7 +288,7 @@ void parcurgere()
             w[j] = 0;
             j = 0;
             printf("Am gasit un nr zecimal: %s\n", w);
-            int y = (int)ceil(my_round(w));
+            int y = (int)ceil(convert(w));
             printf("Numarul rotunjit: %d\n", y);
             c = fgetc(f);
             if(c == ')')
@@ -295,3 +318,4 @@ int main()
     parcurgere();
     return 0;
 }
+
