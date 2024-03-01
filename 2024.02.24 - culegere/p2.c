@@ -4,22 +4,26 @@
 #include <ctype.h>
 #include <math.h>
 
-float convert(char w[])
+int my_round(char w[])
 {
-    printf("DEBUG CONVERT\n");
+    printf("--DEBUG MY_ROUND--\n");
+    int i = 0;
     int nr = 0;
     int st = 0;
-    for(int i = 0; i < strlen(w); i++)
+    int after_point = 0;
+
+    while(w[i] != '\0')
     {
-        printf("st=%d, c=%c\n", st, w[i]);
+        printf("st=%d, c=%c, nr=%d\n", st, w[i], nr);
+
         if(st == 0)
         {
             if(isdigit(w[i]))
             {
                 nr = nr*10 + (w[i] - '0');
                 st = 1;
+                i++;
             }
-
             else
             {
                 printf("ERROR\n");
@@ -30,29 +34,38 @@ float convert(char w[])
         {
             if(isdigit(w[i]))
             {
-                nr = nr*10 + (w[i] - '0')
+                nr = nr*10 + (w[i] - '0');
+                i++;
             }
             else if(w[i] == '.')
             {
                 st = 2;
+                i++;
+
             }
             else
             {
                 st = 0;
             }
         }
-
-        /*if(w[i] == '.')
+        else if(st == 2)
         {
-            i++;
-            nr = nr + (w[i] - '0')*fr;
-            fr = fr/10;
+            if(isdigit(w[i]))
+            {
+                after_point = after_point*10 + (w[i] - '0');
+                if(after_point >= 5)
+                {
+                    nr = nr + 1;
+                }
+                else
+                {
+                    nr = nr;
+                }
+            }
         }
-        else
-        {
-            nr = nr*10 + (w[i] - '0');
-        }*/
+        i++;
     }
+    printf("--FIN--\n");
     return nr;
 }
 
@@ -65,7 +78,7 @@ void parcurgere()
     int st = 0;
 
     FILE *f;
-    f = fopen("input_2.txt", "rt");
+    f = fopen("input.txt", "rt");
     if(f == NULL)
     {
         printf("Error at input\n");
@@ -141,8 +154,8 @@ void parcurgere()
             w[j] = 0;
             j = 0;
             printf("w = '%s\n", w);
-            float x = convert(w);
-            printf("Am gasit un numar intreg: %f\n", x);
+            int x = my_round(w);
+            printf("Am gasit un numar intreg: %d\n", x);
             st = 0;
             c = fgetc(f);
         }
@@ -164,11 +177,9 @@ void parcurgere()
         {
             w[j] = 0;
             j = 0;
-            printf("w = %s\n", w);
-            float y = convert(w);
-            printf("Am gasit un numar zecimal: %f\n", y);
-            int q = round(y);
-            printf("Numarul rotunjit: %d\n", q);
+            printf("Am gasit un nr zecimal: %s\n", w);
+            int y = my_round(w);
+            printf("Numarul rotunjit: %d\n", y);
             st = 0;
             c = fgetc(f);
         }
