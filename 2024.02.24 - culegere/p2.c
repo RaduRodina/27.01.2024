@@ -1,4 +1,5 @@
 //MAI AM DE LUCRAT
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -10,7 +11,7 @@ float convert(char w[])
     int i = 0;
     int st = 0;
     float nr = 0;
-    float o = 1; // float o SE RESETEAZA LA 0 MEREU, NU INTELEG DE CE :( 
+    double o = 1;
 
     while(w[i]!= 0)
     {
@@ -47,8 +48,8 @@ float convert(char w[])
         {
             if(isdigit(w[i]))
             {
-                nr = nr*10 + (w[i]- '0')/(float)o;
                 o = o*10;
+                nr = nr + (w[i]- '0')/o;
                 i++;
                 st = 3;
             }
@@ -62,10 +63,10 @@ float convert(char w[])
         {
             if(isdigit(w[i]))
             {
-               nr = nr*10 + (w[i] - '0')/(float)o;
-               o = o*10;
-               i++;
-               st = 3;
+                o = o*10;
+                nr = nr + (w[i] - '0')/o;
+                i++;
+                st = 3;
             }
             else
             {
@@ -313,4 +314,3 @@ int main()
     parcurgere();
     return 0;
 }
-
