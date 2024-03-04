@@ -99,7 +99,7 @@ int main(int argc,char **argv)
     /*
     if(argc!= 4)
     {
-        printf("Sintaxa %s cale hh:mm:ss hh:mm:ss");
+        printf("Sintaxa %s cale hh:mm:ss hh:mm:ss",argv[0]);
         return 1;
     }
     */
@@ -107,6 +107,12 @@ int main(int argc,char **argv)
     char path[100]="p4 - input.txt";
     char time1[20]="10:00:00";
     char time2[20]="23:00:00";
+
+    /*
+    strcpy(path,argv[1]);
+    strcpy(time1,argv[2]);
+    strcpy(time2,argv[3]);
+    */
 
     struct ts ts1=string2ts(time1);
     struct ts ts2=string2ts(time2);
