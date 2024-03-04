@@ -16,6 +16,10 @@ struct ts string2ts(char s[])
     return ts1;
 }
 
+// functie de comparare returneaza valoare
+//  <0 daca ts1<ts2 
+// ==0 daca ts1==ts2
+//  >0 daca ts1>ts2
 int comp(struct ts ts1,struct ts ts2)
 {
     if(ts1.hour!=ts2.hour)
@@ -38,6 +42,7 @@ int comp(struct ts ts1,struct ts ts2)
     }
 }
 
+// functie de afisare
 void print(struct ts ts1)
 {
     printf("%02d:%02d:%02d",ts1.hour,ts1.min,ts1.sec);
@@ -69,6 +74,7 @@ void process(char *path,struct ts ts1,struct ts ts2)
         }
     }
 
+    // sortare
     int sw;
     do
     {
@@ -86,7 +92,7 @@ void process(char *path,struct ts ts1,struct ts ts2)
     } 
     while(sw!=0);
     
-
+    // afisare finala
     for(int i=0;i<n;i++)
     {
         print(tab[i]);
@@ -105,7 +111,7 @@ int main(int argc,char **argv)
     */
 
     char path[100]="p4 - input.txt";
-    char time1[20]="10:00:00";
+    char time1[20]="01:00:00";
     char time2[20]="23:00:00";
 
     /*
