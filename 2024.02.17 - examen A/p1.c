@@ -33,7 +33,7 @@ void octal_reading()
     int st = 0;
 
     FILE *f;
-    f = fopen("input.txt", "rt");
+    f = fopen("p1 - input.txt", "rt");
     if (f == NULL)
     {
         printf("Error at input\n");
