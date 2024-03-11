@@ -53,6 +53,7 @@ void process(char *path, struct timp ts1, struct timp ts2)
     {
         return;
     }
+    
     while(!feof(f))
     {
         fscanf(f, "%s", buf);
@@ -73,7 +74,7 @@ void process(char *path, struct timp ts1, struct timp ts2)
             if(comp(tab[i], tab[i+1])<0)
             {
                 struct timp aux = tab[i+1];
-                tab[i]=tab[i+1];
+                tab[i]=i+1;
                 tab[i+1]=aux;
                 sw++;
             }
@@ -92,9 +93,10 @@ int main(int argc, char *argv[])
 {
     if(argc!=4)
     {
-        printf("Sintaxa %s cale hh:mm:ss", argv[0]);
+        printf("Sintaxa %s cale hh:mm:ss hh:mm:ss", argv[0]);
         return 1;
     }
+    
     char path[100] = "p4 - input.txt";
     char time1[20] = "01:00:00";
     char time2[20] = "23:00:00";
@@ -102,4 +104,7 @@ int main(int argc, char *argv[])
     strcpy(path, argv[1]);
     strcpy(time1, argv[2]);
     strcpy(time2, argv[3]);
+
+    process(path, string2ts(time1), string2ts(time2));
+    
 }
