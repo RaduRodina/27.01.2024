@@ -50,6 +50,7 @@ double avg_buf(unsigned long buff[], int k)
     }
     printf("s = %ul\n", s);
     return (double)s/k;
+    
 }
 
 void hexa_in_string(char s[])
