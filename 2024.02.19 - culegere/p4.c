@@ -43,28 +43,65 @@ void print(struct timp ts1)
 void process(char *path, struct timp ts1, struct timp ts2)
 {
     char buf[100];
-    struct timp tab[100];
+    struct timp *tab = NULL;
     int n = 0;
+    int i = 0;
 
     FILE *f = NULL;
     printf("%s\n", path);
+
     f = fopen(path, "rt");
     if(f == NULL)
     {
         return;
     }
-    
+
     while(!feof(f))
     {
         fscanf(f, "%s", buf);
+        if(feof(f))
+        {
+            break;
+        }
         struct timp ts3 = string2ts(buf);
         print(ts3);
         printf("\n");
         if(comp(ts1, ts3)<=0 && comp(ts3, ts2) <= 0)
         {
-            tab[n++]=ts3;
+            n++;
         }
     }
+    fclose(f);
+    printf("n=%d\n", n);
+
+    printf("size=%d\n", sizeof(struct timp));
+    tab = (struct timp*)malloc(n*sizeof(struct timp));
+
+    f = fopen(path, "rt");
+    if(f == NULL)
+    {
+        return;
+    }
+
+    while(!feof(f))
+    {
+        fscanf(f, "%s", buf);
+        if(feof(f))
+        {
+            break;
+        }
+        struct timp ts3 = string2ts(buf);
+        print(ts3);
+        printf("\n");
+        if(comp(ts1, ts3)<=0 && comp(ts3, ts2) <= 0)
+        {
+            tab[i++]=ts3;
+        }
+    }
+
+    fclose(f);
+    printf("\n");
+
     int sw;
     do
     {
@@ -73,8 +110,8 @@ void process(char *path, struct timp ts1, struct timp ts2)
         {
             if(comp(tab[i], tab[i+1])<0)
             {
-                struct timp aux = tab[i+1];
-                tab[i]=i+1;
+                struct timp aux = tab[i];
+                tab[i] = tab[i+1];
                 tab[i+1]=aux;
                 sw++;
             }
@@ -91,12 +128,17 @@ void process(char *path, struct timp ts1, struct timp ts2)
 
 int main(int argc, char *argv[])
 {
+    printf("%d\n", argc);
+    for(int i = 0; i < argc; i++)
+    {
+        printf("%s\n", argv[i]);
+    }
     if(argc!=4)
     {
         printf("Sintaxa %s cale hh:mm:ss hh:mm:ss", argv[0]);
         return 1;
     }
-    
+
     char path[100] = "p4 - input.txt";
     char time1[20] = "01:00:00";
     char time2[20] = "23:00:00";
@@ -106,5 +148,5 @@ int main(int argc, char *argv[])
     strcpy(time2, argv[3]);
 
     process(path, string2ts(time1), string2ts(time2));
-    
+
 }
