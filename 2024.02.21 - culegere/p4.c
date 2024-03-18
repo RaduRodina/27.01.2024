@@ -1,3 +1,5 @@
+//NU STIU DE CE SE OPRESTE LA PRIMA LINIE 
+
 #include <string.h>
 #include <stdio.h>
 #include <ctype.h>
